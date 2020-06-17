@@ -13,6 +13,8 @@ function getWeatherAdress(lat, lon) {
     prmWeather
         .then((weather) => {
             console.log(weather);
+            return weather
 
         })
+    return prmWeather
 }

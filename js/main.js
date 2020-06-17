@@ -36,8 +36,9 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
             return loc //שיניתי פה
         })
         .then(loc => {
-            weatherService.getWeatherAdress(loc.lat, loc.lng)
+            return weatherService.getWeatherAdress(loc.lat, loc.lng)
         })
+        .then(weather => renderWeather(weather))
 })
 
 
@@ -67,4 +68,17 @@ function renderLocName(lat, lng) {
     str.then((str) => {
         container.innerText = str;
     })
+}
+
+
+
+function renderWeather(weather) {
+    console.log('render triggered');
+    console.log(weather);
+
+    document.querySelector('.location-tempature').innerHTML = `Tempature: ${(weather.data.main.temp - 32)*5 / 9}`
+    document.querySelector('.location-humidity').innerHTML = `Humidity: ${weather.data.main.humidity}`
+    document.querySelector('.location-forecast').innerHTML = `Forecast: ${weather.data.weather[0].main}`
+
+
 }
