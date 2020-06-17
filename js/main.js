@@ -2,6 +2,7 @@ console.log('Main!');
 
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+import { weatherService } from './services/weather.service.js'
 
 
 locService.getLocs()
@@ -30,8 +31,13 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
     var adress = document.querySelector('.loc-input').value;
     var locObj = locService.getLocByAdress(adress);
     locObj.then((loc) => {
-        mapService.panTo(loc.lat, loc.lng)
-    })
+            mapService.panTo(loc.lat, loc.lng)
+            document.querySelector('.location-name').innerHTML = loc.locName //שיניתי פה
+            return loc //שיניתי פה
+        })
+        .then(loc => {
+            weatherService.getWeatherAdress(loc.lat, loc.lng)
+        })
 })
 
 
