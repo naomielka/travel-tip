@@ -29,3 +29,7 @@ document.querySelector('.btn').addEventListener('click', (ev) => {
     console.log('Aha!', ev.target);
     mapService.panTo(35.6895, 139.6917);
 })
+document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
+    console.log('Aha!', ev.target);
+    mapService.panTo(35.6895, 139.6917);
+})
