@@ -27,6 +27,9 @@ window.onload = () => {
         })
 }
 
+document.querySelector('.close').addEventListener('click', (ev) => {
+    document.querySelector('.weather').style.display = 'none'
+})
 document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
     var adress = document.querySelector('.loc-input').value;
     var locObj = locService.getLocByAdress(adress);
@@ -41,7 +44,7 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
         })
         .then(weather => {
             renderWeather(weather)
-            document.querySelector('.weather').style.visibility = 'visible'
+            document.querySelector('.weather').style.display = 'block'
         })
 })
 
