@@ -78,7 +78,6 @@ p {
 }
 
 .weather {
-    background-color: rgb(245, 241, 234);
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     text-align: center;
+    visibility: hidden;
 }
