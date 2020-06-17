@@ -4,6 +4,20 @@
 
 body {
     margin: 0;
+    background-color: rgb(241, 232, 213);
+}
+
+.container>* {
+    margin: 5px;
+}
+
+button {
+    border: none;
+    background-color: wheat;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 
