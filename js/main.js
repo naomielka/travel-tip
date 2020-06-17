@@ -26,11 +26,12 @@ window.onload = () => {
         })
 }
 
-document.querySelector('.btn').addEventListener('click', (ev) => {
-    console.log('Aha!', ev.target);
-    mapService.panTo(35.6895, 139.6917);
-
-
+document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
+    var adress = document.querySelector('.loc-input').value;
+    var locObj = locService.getLocByAdress(adress);
+    locObj.then((loc) => {
+        mapService.panTo(loc.lat, loc.lng)
+    })
 })
 
 
