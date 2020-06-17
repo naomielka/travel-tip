@@ -40,7 +40,8 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
     let currPos = locService.getPosition()
     currPos
         .then(loc => {
-            mapService.initMap(loc.coords.latitude, loc.coords.longitude)
+            mapService.panTo(loc.coords.latitude, loc.coords.longitude)
+            mapService.addMarker({ lat: loc.coords.latitude, lng: loc.coords.longitude });
             console.log("loc", loc)
             console.log('loc lat', loc.coords.latitude)
             console.log('loc long', loc.coords.latitude)
