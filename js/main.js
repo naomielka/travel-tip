@@ -33,6 +33,7 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
     locObj.then((loc) => {
             mapService.panTo(loc.lat, loc.lng)
             document.querySelector('.location-name').innerHTML = loc.locName //שיניתי פה
+            renderLocName(loc.lat, loc.lng)
             return loc //שיניתי פה
         })
         .then(loc => {

@@ -3,6 +3,11 @@
     src: url(../fonts/MuseoModerno/MuseoModerno-VariableFont_wght.ttf);
 }
 
+@font-face {
+    font-family: moseu-bold;
+    src: url(../fonts/MuseoModerno/static/MuseoModerno-Bold.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -24,6 +29,29 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+.weather {
+    height: 400px;
+    width: 200px;
+    background-color: rgb(155, 197, 245);
+    margin-right: 20px;
+}
+
+.weather-info {
+    background-color: rgb(227, 237, 252);
+    margin: 10px;
+    padding: 5px;
+}
+
+h3 {
+    font-family: moseu-bold;
+    margin: 5px;
+}
+
+p {
+    margin: 1px;
+    font-size: 0.9rem;
 }
 
 
