@@ -48,24 +48,24 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
     let currPos = locService.getPosition()
     currPos
         .then(loc => {
-            // location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
+            mapService.panTo(loc.coords.latitude, loc.coords.longitude)
+            mapService.addMarker({ lat: loc.coords.latitude, lng: loc.coords.longitude });
+            renderLocName(loc.coords.latitude, loc.coords.longitude)
             return loc
         })
         .then(loc => {
-            // location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
-            mapService.panTo(loc.coords.latitude, loc.coords.longitude)
-            mapService.addMarker({ lat: loc.coords.latitude, lng: loc.coords.longitude });
-            console.log("loc", loc)
-            console.log('loc lat', loc.coords.latitude)
-            console.log('loc long', loc.coords.latitude)
+            return weatherService.getWeatherAdress(loc.coords.latitude, loc.coords.longitude)
         })
+
+    .then(weather => renderWeather(weather))
+
 
 
 })
 
 function renderLocName(lat, lng) {
     var str = locService.getLocByCords(lat, lng)
-    var container = document.querySelector('.loc-Name');
+    var container = document.querySelector('.location-name'); //שיניתי פה
     str.then((str) => {
         container.innerText = str;
     })
@@ -74,12 +74,7 @@ function renderLocName(lat, lng) {
 
 
 function renderWeather(weather) {
-    console.log('render triggered');
-    console.log(weather);
-
-    document.querySelector('.location-tempature').innerHTML = `Tempature: ${(weather.data.main.temp - 32)*5 / 9}`
+    document.querySelector('.location-tempature').innerHTML = `Tempature: ${Math.round((weather.data.main.temp - 273.15))}`
     document.querySelector('.location-humidity').innerHTML = `Humidity: ${weather.data.main.humidity}`
     document.querySelector('.location-forecast').innerHTML = `Forecast: ${weather.data.weather[0].main}`
-
-
 }
