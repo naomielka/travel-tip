@@ -30,11 +30,10 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
     var adress = document.querySelector('.loc-input').value;
     var locObj = locService.getLocByAdress(adress);
     locObj.then((loc) => {
-        mapService.panTo(loc.lat, loc.lng)
+        mapService.panTo(loc.lat, loc.lng);
+        renderLocName(loc.lat, loc.lng);
     })
 })
-
-
 
 
 document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
@@ -46,7 +45,7 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
             return loc
         })
         .then(loc => {
-            //location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
+            // location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
             mapService.panTo(loc.coords.latitude, loc.coords.longitude)
             mapService.addMarker({ lat: loc.coords.latitude, lng: loc.coords.longitude });
             console.log("loc", loc)
@@ -56,3 +55,11 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
 
 
 })
+
+function renderLocName(lat, lng) {
+    var str = locService.getLocByCords(lat, lng)
+    var container = document.querySelector('.loc-Name');
+    str.then((str) => {
+        container.innerText = str;
+    })
+}
