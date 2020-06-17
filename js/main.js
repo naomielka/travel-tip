@@ -27,6 +27,9 @@ window.onload = () => {
         })
 }
 
+document.querySelector('.close').addEventListener('click', (ev) => {
+    document.querySelector('.weather').style.display = 'none'
+})
 document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
     var adress = document.querySelector('.loc-input').value;
     var locObj = locService.getLocByAdress(adress);
@@ -41,7 +44,8 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
         })
         .then(weather => {
             renderWeather(weather)
-            document.querySelector('.weather').style.visibility = 'visible'
+            remderWeatherPicture(weather)
+            document.querySelector('.weather').style.display = 'block'
         })
 })
 
@@ -63,7 +67,7 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
     .then(weather => {
         renderWeather(weather)
         remderWeatherPicture(weather)
-        document.querySelector('.weather').style.visibility = 'visible'
+        document.querySelector('.weather').style.display = 'block'
 
     })
 
@@ -89,6 +93,11 @@ function renderWeather(weather) {
 
 function remderWeatherPicture(weather) {
     let weatherPicture = document.querySelector('.weather-pic')
-    if (weather.data.weather[0].main === 'Clear') weatherPicture.style.backgroundPosition = '0px 0px'
+    console.log(weather.data.weather[0].main);
+
+    if (weather.data.weather[0].main === 'Clear') weatherPicture.style.backgroundPosition = '-22px -21px'
+    if (weather.data.weather[0].main === 'Clouds') weatherPicture.style.backgroundPosition = '-288px -25px'
+    if (weather.data.weather[0].main === 'Rain') weatherPicture.style.backgroundPosition = '-24px -271px'
+        //  if (weather.data.weather[0].main === 'Clear') weatherPicture.style.backgroundPosition = '-22px -21px'
 
 }
