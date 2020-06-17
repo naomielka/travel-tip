@@ -82,3 +82,18 @@ p {
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     text-align: center;
 }
+
+@media (max-width: 580px) {
+    .container {
+        flex-direction: column;
+    }
+    .weather-map-container {
+        flex-direction: column;
+    }
+    .weather {
+        height: 250px;
+        position: fixed;
+        top: 25%;
+        z-index: 1;
+    }
+}
