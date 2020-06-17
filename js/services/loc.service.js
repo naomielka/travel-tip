@@ -1,58 +1,38 @@
-< !DOCTYPE html >
-    <
-    html lang = "en" >
+export const locService = {
+    getLocs,
+    getPosition,
+    getLocByAdress,
+    getLocByCords
+}
+var locs = [{ lat: 11.22, lng: 22.11 }]
 
-    <
-    head >
-    <
-    meta charset = "UTF-8" >
-    <
-    meta name = "viewport"
-content = "width=device-width, initial-scale=1.0" >
-    <
-    link rel = "stylesheet"
-href = "css/main.css" >
-    <
-    title > ES6 < /title> <
-    /head>
+function getLocs() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(locs);
+        }, 2000)
+    });
+}
 
-<
-body >
-    <
-    header class = "flex justify-center" >
-    <
-    h1 > Travel Tip < /h1> <
-    /header> <
-    main class = "flex col justify-center align-center" >
-    <
-    div class = "container flex row" >
-    <
-    input class = "loc-input"
-type = "text" >
-    <
-    button class = "btn-text-search" > Go to location < /button> <
-    button class = "btn-my-location" > Go to My location < /button> <
-    button class = "btn" > Copy this location < /button> <
-    /div> <
-    h4 class = "loc-Name" > < /h4>
 
-<
-div id = "map"
-style = "width: 500px; height: 400px;" > < /div> <
-    div class = "weather" >
-    <
-    div class = "location-name" > < /div> <
-    div class = "location-tempature" > < /div> <
-    /div> <
-    /main> <
-    script src = "lib/axios.js" > < /script> <
-    script type = "module"
-src = "js/main.js" > < /script> <
-    /body>
+function getPosition() {
+    console.log('Getting Pos');
 
-<
-/html> return locObj;
-})
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
+}
+
+function getLocByAdress(adress) {
+    var adressInfo = axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${adress}&key=AIzaSyB6yvi2SP3dL00sl9NoekkrvqIEq0u2iLE`)
+    return adressInfo.then((loc) => {
+        var adress = loc.data;
+        let lat = adress.results[0].geometry.location.lat;
+        let lng = adress.results[0].geometry.location.lng;
+        let locName = adress.results[0].formatted_address; // הוספתי פה
+        let locObj = { lat, lng, locName } // הוספתי פה
+        return locObj;
+    })
 }
 
 function getLocByCords(lat, lng) {

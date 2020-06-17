@@ -1,63 +1,43 @@
-< !DOCTYPE html >
-    <
-    html lang = "en" >
+console.log('Main!');
 
-    <
-    head >
-    <
-    meta charset = "UTF-8" >
-    <
-    meta name = "viewport"
-content = "width=device-width, initial-scale=1.0" >
-    <
-    link rel = "stylesheet"
-href = "css/main.css" >
-    <
-    title > ES6 < /title> <
-    /head>
+import { locService } from './services/loc.service.js'
+import { mapService } from './services/map.service.js'
+import { weatherService } from './services/weather.service.js'
 
-<
-body >
-    <
-    header class = "flex justify-center" >
-    <
-    h1 > Travel Tip < /h1> <
-    /header> <
-    main class = "flex col justify-center align-center" >
-    <
-    div class = "container flex row" >
-    <
-    input class = "loc-input"
-type = "text" >
-    <
-    button class = "btn-text-search" > Go to location < /button> <
-    button class = "btn-my-location" > Go to My location < /button> <
-    button class = "btn" > Copy this location < /button> <
-    /div> <
-    h4 class = "loc-Name" > < /h4>
 
-<
-div id = "map"
-style = "width: 500px; height: 400px;" > < /div> <
-    div class = "weather" >
-    <
-    div class = "location-name" > < /div> <
-    div class = "location-tempature" > < /div> <
-    /div> <
-    /main> <
-    script src = "lib/axios.js" > < /script> <
-    script type = "module"
-src = "js/main.js" > < /script> <
-    /body>
+locService.getLocs()
+    .then(locs => console.log('locs', locs))
 
-<
-/html>     mapService.panTo(loc.lat, loc.lng)
-document.querySelector('.location-name').innerHTML = loc.locName //שיניתי פה
-return loc //שיניתי פה
-})
-.then(loc => {
-weatherService.getWeatherAdress(loc.lat, loc.lng)
-})
+window.onload = () => {
+
+    mapService.initMap()
+        .then(() => {
+
+            mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+        })
+        .catch(console.log('INIT MAP ERROR'));
+
+    locService.getPosition()
+        .then(pos => {
+
+            console.log('User position is:', pos.coords);
+        })
+        .catch(err => {
+            console.log('err!!!', err);
+        })
+}
+
+document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
+    var adress = document.querySelector('.loc-input').value;
+    var locObj = locService.getLocByAdress(adress);
+    locObj.then((loc) => {
+            mapService.panTo(loc.lat, loc.lng)
+            document.querySelector('.location-name').innerHTML = loc.locName //שיניתי פה
+            return loc //שיניתי פה
+        })
+        .then(loc => {
+            weatherService.getWeatherAdress(loc.lat, loc.lng)
+        })
 })
 
 
