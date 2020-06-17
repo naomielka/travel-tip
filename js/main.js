@@ -42,7 +42,7 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
     let currPos = locService.getPosition()
     currPos
         .then(loc => {
-            location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
+            // location.href = "http://127.0.0.1:5501/?lat=3.14&lng=1.63";
             return loc
         })
         .then(loc => {
