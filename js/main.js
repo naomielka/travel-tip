@@ -42,8 +42,6 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
         .then(weather => {
             renderWeather(weather)
             document.querySelector('.weather').style.visibility = 'visible'
-
-
         })
 })
 
