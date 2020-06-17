@@ -81,3 +81,10 @@ p {
     text-align: center;
     visibility: hidden;
 }
+
+.weather-pic {
+    width: 89px;
+    height: 85px;
+    background: url(/img/weather2.png);
+    background-position: -22px -21px;
+}

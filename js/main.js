@@ -62,6 +62,7 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
 
     .then(weather => {
         renderWeather(weather)
+        remderWeatherPicture(weather)
         document.querySelector('.weather').style.visibility = 'visible'
 
     })
@@ -84,4 +85,10 @@ function renderWeather(weather) {
     document.querySelector('.location-tempature').innerHTML = `Tempature: ${Math.round((weather.data.main.temp - 273.15))}`
     document.querySelector('.location-humidity').innerHTML = `Humidity: ${weather.data.main.humidity}`
     document.querySelector('.location-forecast').innerHTML = `Forecast: ${weather.data.weather[0].main}`
+}
+
+function remderWeatherPicture(weather) {
+    let weatherPicture = document.querySelector('.weather-pic')
+    if (weather.data.weather[0].main === 'Clear') weatherPicture.style.backgroundPosition = '0px 0px'
+
 }
