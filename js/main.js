@@ -36,7 +36,7 @@ document.querySelector('.btn').addEventListener('click', (ev) => {
 
 
 document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
-    console.log('Aha!', ev.target);
+    console.log('Button 2!', ev.target);
     let currPos = locService.getPosition()
     currPos
         .then(loc => {
