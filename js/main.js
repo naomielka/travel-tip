@@ -39,7 +39,10 @@ document.querySelector('.btn-text-search').addEventListener('click', (ev) => {
         .then(loc => {
             return weatherService.getWeatherAdress(loc.lat, loc.lng)
         })
-        .then(weather => renderWeather(weather))
+        .then(weather => {
+            renderWeather(weather)
+            document.querySelector('.weather').style.visibility = 'visible'
+        })
 })
 
 
