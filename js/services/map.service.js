@@ -1,4 +1,3 @@
-
 export const mapService = {
     initMap,
     addMarker,
@@ -16,9 +15,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             map = new google.maps.Map(
                 document.querySelector('#map'), {
-                center: { lat, lng },
-                zoom: 15
-            })
+                    center: { lat, lng },
+                    zoom: 15
+                })
             console.log('Map!', map);
         })
 }
@@ -27,7 +26,7 @@ function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
         map: map,
-        title: 'Hello World!'
+        title: 'My location'
     });
     return marker;
 }
@@ -50,6 +49,3 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
-
-
-
