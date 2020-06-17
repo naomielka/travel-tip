@@ -42,6 +42,8 @@ document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
         .then(loc => {
             mapService.panTo(loc.latitude, loc.longtitude)
             console.log(loc)
+            console.log(loc.latitude)
+            console.log(loc.longtitude)
         })
 
 
